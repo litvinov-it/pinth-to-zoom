@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import { geistMono, geistSans } from './fonts/fonts';
 import clsx from 'clsx';
 
-import '@/app/styles/normalize.css';
-import '@/app/styles/global.css';
+import './styles/normalize.css';
+import './styles/globals.css';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -17,7 +17,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ru">
-      <body className={clsx(geistMono.variable, geistSans.variable)}>
+      <body className={clsx(geistSans.variable, geistMono.variable)}>
         {children}
       </body>
     </html>
