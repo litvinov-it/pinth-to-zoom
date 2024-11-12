@@ -1,20 +1,18 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
 # dependencies
-/node_modules
+/node_modules/
 /.pnp
 .pnp.js
 .yarn/install-state.gz
 
 # testing
-/coverage
+/coverage/
 
 # next.js
 /.next/
 /out/
 
 # production
-/build
+/build/
 
 # misc
 .DS_Store
@@ -28,15 +26,18 @@ yarn-error.log*
 # env files
 .env.local
 .env.production
+.env.*.local # чтобы игнорировать любые локальные env файлы
 
 # vercel
-.vercel
+.vercel/
 
 # typescript
 *.tsbuildinfo
 next-env.d.ts
 
+# Storybook logs
 *storybook.log
-/storybook-static
+/storybook-static/
 
-/dist
+# dist (если используется)
+dist/
