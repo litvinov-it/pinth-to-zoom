@@ -1,3 +1,37 @@
+//* Для установки всех зависимостей одной командой
+// yarn add eslint@8.48.0 prettier @typescript-eslint/parser @typescript-eslint/eslint-plugin eslint-plugin-react eslint-plugin-react-hooks eslint-config-next eslint-config-prettier eslint-plugin-prettier --dev
+
 {
-  "extends": ["next/core-web-vitals", "next/typescript"]
+  "parser": "@typescript-eslint/parser", // Использовать парсер для TypeScript
+  "parserOptions": {
+    "ecmaVersion": 2020,  // Использовать современный синтаксис ECMAScript
+    "sourceType": "module"  // Использовать модули ES6
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "next/core-web-vitals",
+    "plugin:prettier/recommended",  // Интеграция с Prettier
+    "prettier"  // Отключение конфликтующих правил ESLint
+  ],
+  "plugins": ["@typescript-eslint", "react", "react-hooks"],
+  "rules": {
+    // Ваши собственные правила
+    "react/react-in-jsx-scope": "off", // Не требуется в Next.js
+    "react/jsx-uses-react": "off", // Не требуется в Next.js
+    "no-console": "warn", // Предупреждение при использовании console.log
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      { "argsIgnorePattern": "^_" }
+    ], // Ошибка для неиспользуемых переменных, игнорируя переменные, начинающиеся с "_"
+    "prettier/prettier": ["error", { "endOfLine": "auto" }],
+    "@typescript-eslint/ban-ts-comment": "warn" // Настройки Prettier
+  },
+  "settings": {
+    "react": {
+      "version": "detect" // Автоматическое определение версии React
+    }
+  }
 }
