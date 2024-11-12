@@ -1,3 +1,13 @@
+/* Custom base styles =========== */
+
+/* List styles */
+
+ul {
+  list-style: none;
+}
+
+/* Standart normalize ============= */
+
 html {
   line-height: 1.15;
   /* 1 */
