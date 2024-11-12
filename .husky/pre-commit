@@ -1,0 +1,2 @@
+next lint --fix 
+git add . 
