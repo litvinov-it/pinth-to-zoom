@@ -2,10 +2,12 @@ import type { Metadata } from 'next';
 import { geistMono, geistSans } from './fonts/fonts';
 import clsx from 'clsx';
 
-import './styles/normalize.css';
-import './styles/globals.css';
 import { MobileProvider } from './utils/MobileContext/MobileContext';
 import { isMobileServerSide } from './utils/MobileContext/isMobileServerSide';
+import { ScrollSmootherInit } from './utils/GSAP/ScrollSmootherInit';
+
+import './styles/normalize.css';
+import './styles/globals.css';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -21,7 +23,7 @@ export default function RootLayout({
     <html lang="ru">
       <body className={clsx(geistSans.variable, geistMono.variable)}>
         <MobileProvider initialIsMobile={isMobileServerSide()}>
-          {children}
+          <ScrollSmootherInit>{children}</ScrollSmootherInit>
         </MobileProvider>
       </body>
     </html>

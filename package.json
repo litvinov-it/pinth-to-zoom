@@ -12,6 +12,7 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
+    "@gsap/react": "^2.1.1",
     "@storybook/addon-links": "^8.4.7",
     "@svgr/webpack": "^8.1.0",
     "@typescript-eslint/eslint-plugin": "^6.21.0",
@@ -19,6 +20,7 @@
     "clsx": "^2.1.1",
     "eslint": "^8.57.1",
     "eslint-config-next": "^15.0.4",
+    "gsap": "npm:@gsap/shockingly@^3.12.5",
     "next": "^14.2.11",
     "postcss-load-config": "^6.0.1",
     "react": "^18",
