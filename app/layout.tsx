@@ -4,6 +4,8 @@ import clsx from 'clsx';
 
 import './styles/normalize.css';
 import './styles/globals.css';
+import { MobileProvider } from './utils/MobileContext/MobileContext';
+import { isMobileServerSide } from './utils/MobileContext/isMobileServerSide';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -18,7 +20,9 @@ export default function RootLayout({
   return (
     <html lang="ru">
       <body className={clsx(geistSans.variable, geistMono.variable)}>
-        {children}
+        <MobileProvider initialIsMobile={isMobileServerSide()}>
+          {children}
+        </MobileProvider>
       </body>
     </html>
   );
