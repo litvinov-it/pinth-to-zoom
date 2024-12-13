@@ -1,0 +1,14 @@
+@font-face {
+    font-family: 'GeistMonoVF';
+    src: url('../app/fonts/GeistMonoVF.woff');
+}
+
+@font-face {
+    font-family: 'GeistVF';
+    src: url('../app/fonts/GeistVF.woff');
+}
+
+:root {
+    --font-geist-mono: 'GeistMonoVF', sans-serif;
+    --font-geist-sans: 'GeistVF', sans-serif;
+}
