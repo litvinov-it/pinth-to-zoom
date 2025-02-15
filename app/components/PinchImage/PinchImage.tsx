@@ -31,7 +31,7 @@ export default function PinchImage() {
 
   useGesture(
     {
-      onDrag: ({ pinching, cancel, offset: [x, y], ...rest }) => {
+      onDrag: ({ pinching, cancel, offset: [x, y] }) => {
         if (pinching || style.scale.get() === 1) return cancel();
         const image = refImage.current! as HTMLElement;
         const { width, height } = image.getBoundingClientRect();
@@ -87,6 +87,7 @@ export default function PinchImage() {
 
   return (
     <div className="flex items-center justify-center w-screen h-screen overflow-hidden bg-gray-100">
+      {/* @ts-expect-error */}
       <animated.div
         className="relative w-96 h-96 touch-none"
         ref={refImage}
