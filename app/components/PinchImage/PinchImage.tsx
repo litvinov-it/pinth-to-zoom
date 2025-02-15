@@ -55,7 +55,7 @@ export default function PinchImage() {
         origin: [ox, oy],
         first,
         movement: [ms],
-        offset: [s, a],
+        offset: [s],
         memo,
       }) => {
         if (first) {
@@ -71,7 +71,6 @@ export default function PinchImage() {
         const y = memo[1] - (ms - 1) * memo[3];
         api.start({
           scale: s,
-          rotateZ: a,
           x: s === 1 ? 0 : x,
           y: s === 1 ? 0 : y,
         });
