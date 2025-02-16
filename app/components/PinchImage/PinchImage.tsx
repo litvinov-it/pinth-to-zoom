@@ -32,24 +32,27 @@ export default function PinchImage() {
   useGesture(
     {
       onDrag: ({ pinching, cancel, offset: [x, y] }) => {
-        if (pinching || style.scale.get() === 1) return cancel();
         const image = refImage.current! as HTMLElement;
         const { width, height } = image.getBoundingClientRect();
-        const scale = style.scale.get();
+        const screenWidth = window.innerWidth;
+        const screenHeight = window.innerHeight;
 
-        // Размеры увеличенного изображения
-        const scaledWidth = width * scale;
-        const scaledHeight = height * scale;
+        if (pinching || (width <= screenWidth && height <= screenHeight)) {
+          return cancel();
+        }
 
-        // Границы перемещения
-        const maxX = (scaledWidth - width) / 2;
-        const maxY = (scaledHeight - height) / 2;
+        const allowX = width > screenWidth;
+        const allowY = height > screenHeight;
 
-        // Ограничиваем `x` и `y`
-        const clampedX = Math.min(maxX, Math.max(-maxX, x));
-        const clampedY = Math.min(maxY, Math.max(-maxY, y));
+              // Вычисляем границы
+      const maxX = (width - screenWidth) / 2;
+      const maxY = (height - screenHeight) / 2;
 
-        api.start({ x: clampedX, y: clampedY });
+      // Ограничиваем x и y
+      const clampedX = allowX ? Math.min(maxX, Math.max(-maxX, x)) : 0;
+      const clampedY = allowY ? Math.min(maxY, Math.max(-maxY, y)) : 0;
+
+      api.start({ x: clampedX, y: clampedY });
       },
       onPinch: ({
         origin: [ox, oy],
@@ -67,12 +70,20 @@ export default function PinchImage() {
           memo = [style.x.get(), style.y.get(), tx, ty];
         }
 
+        const image = refImage.current! as HTMLElement;
+        const { width, height } = image.getBoundingClientRect();
+        const screenWidth = window.innerWidth;
+        const screenHeight = window.innerHeight;
+
+        const allowX = width > screenWidth;
+        const allowY = height > screenHeight;
+
         const x = memo[0] - (ms - 1) * memo[2];
         const y = memo[1] - (ms - 1) * memo[3];
         api.start({
           scale: s,
-          x: s === 1 ? 0 : x,
-          y: s === 1 ? 0 : y,
+          x: allowX ? x : 0,
+          y: allowY ? y : 0,
         });
         return memo;
       },
@@ -80,7 +91,7 @@ export default function PinchImage() {
     {
       target: refImage,
       drag: { from: () => [style.x.get(), style.y.get()] },
-      pinch: { scaleBounds: { min: 1, max: 2 }, rubberband: true },
+      pinch: { scaleBounds: { min: 1, max: 10 }, rubberband: true },
     }
   );
 
