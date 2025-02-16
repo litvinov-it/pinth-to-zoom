@@ -44,15 +44,15 @@ export default function PinchImage() {
         const allowX = width > screenWidth;
         const allowY = height > screenHeight;
 
-              // Вычисляем границы
-      const maxX = (width - screenWidth) / 2;
-      const maxY = (height - screenHeight) / 2;
+        // Вычисляем границы
+        const maxX = (width - screenWidth) / 2;
+        const maxY = (height - screenHeight) / 2;
 
-      // Ограничиваем x и y
-      const clampedX = allowX ? Math.min(maxX, Math.max(-maxX, x)) : 0;
-      const clampedY = allowY ? Math.min(maxY, Math.max(-maxY, y)) : 0;
+        // Ограничиваем x и y
+        const clampedX = allowX ? Math.min(maxX, Math.max(-maxX, x)) : 0;
+        const clampedY = allowY ? Math.min(maxY, Math.max(-maxY, y)) : 0;
 
-      api.start({ x: clampedX, y: clampedY });
+        api.start({ x: clampedX, y: clampedY });
       },
       onPinch: ({
         origin: [ox, oy],
